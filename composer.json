@@ -1,0 +1,30 @@
+{
+	"name": "larapost/posts",
+	"type": "library",
+	"description": "Content posts system",
+	"keywords": ["php", "laravel", "larapost", "posts", "komicho"],
+	"homepage": "https://github.com/komichoLab/laravelWebToken",
+	"require": {
+		"larapost/categories":"*"
+    },
+	"authors": [
+		{
+			"name": "komicho",
+			"email": "komicho1996@gmail.com",
+			"homepage": "https://github.com/komicho",
+			"role": "Developer"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"Larapost\\": "/src"
+		}
+	},
+	"extra": {
+        "laravel": {
+            "providers": [
+                "Larapost\\Posts\\Support\\ServiceProvider"
+            ]
+        }
+    }
+}
