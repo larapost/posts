@@ -21,6 +21,7 @@ class CreatePostsTable extends Migration
             $table->text('excerpt')->nullable();
             $table->string('type')->default('post');
             $table->enum('status', ['publish', 'draft', 'delete'])->default('draft');
+            $table->timestamp('published_at')->nullable();
             $table->timestamps();
         });
     }
