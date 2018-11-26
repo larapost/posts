@@ -29,4 +29,20 @@ class Post extends Model
      * @var array
      */
     protected $hidden = [];
+
+    protected $with = [
+        'cats_main',
+        'cats_sub'
+    ];
+
+    public function cats_main()
+    {
+        return $this->hasMany('Larapost\Models\PostsCat')->where('type', '=', 'main');
+    }
+
+    public function cats_sub()
+    {
+        return $this->hasMany('Larapost\Models\PostsCat')->where('type', '=', 'sub');
+    }
+
 }

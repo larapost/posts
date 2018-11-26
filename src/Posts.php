@@ -3,6 +3,7 @@
 namespace Larapost;
 
 use Larapost\Models\Post;
+use Larapost\Models\PostsCat;
 
 class Posts
 {
@@ -47,6 +48,46 @@ class Posts
     public function delete()
     {
         return $this->where->delete();
+    }
+
+    public function addCat($post_id, $cat_id, $type = 'main')
+    {
+        $cat = PostsCat::where('post_id', '=', $post_id)
+        ->where('cat_id', '=', $cat_id)
+        ->where('type', '=', $type)
+        ->first();
+        if ($cat) {
+            return false;
+        }
+        PostsCat::create([
+            'post_id' => $post_id,
+            'cat_id' => $cat_id,
+            'type' => $type,
+        ]);
+        return true;
+    }
+
+    public function removeCat($post_id, $cat_id, $type = 'main')
+    {
+        $cat = PostsCat::where('post_id', '=', $post_id)
+        ->where('cat_id', '=', $cat_id)
+        ->where('type', '=', $type);
+        if (!$cat->first()) {
+            return false;
+        }
+        $cat->delete();
+        return true;
+    }
+
+    public function clearCat($post_id, $type = 'main')
+    {
+        $cat = PostsCat::where('post_id', '=', $post_id)
+        ->where('type', '=', $type);
+        if (!$cat->first()) {
+            return false;
+        }
+        $cat->delete();
+        return true;
     }
 
     public function statistics()
